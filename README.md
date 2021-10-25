@@ -5,7 +5,7 @@ This is a small script I make with some feature for my discord profile, using no
 **[Feature](#features)**<br>
 **[Requirements](#requirements)**<br>
 **[Installation](#installation)**<br>
-**[How to Config.json](#how-to-config.json)**<br>
+**[How to Config.json](#how-to-configjson?)**<br>
 
 ## Features
 - Auto reconnect when exist discord and when discord is not opened yet
@@ -14,8 +14,8 @@ This is a small script I make with some feature for my discord profile, using no
 - Easy to config
 
 ## Requirements
-[nodejs](https://nodejs.org/en/)
-[Discord Application](https://discord.com/developers/applications)
+- [nodejs](https://nodejs.org/en/)
+- [Discord Application](https://discord.com/developers/applications)
 
 ## Installation
 1. Install nodejs
@@ -25,7 +25,7 @@ This is a small script I make with some feature for my discord profile, using no
 5. Run `node index.js` to start the script
 6. (Extra) If you want to start it automatically on startup, use `node process manager` or use [`Task scheduler`](https://bfy.tw/RtOh) (Windows OS)
 
-## How to Config.json
+## How to Config.json?
 | Element | Usage |
 | ------ | ------ |
 | clientID | Your discord application ID |
