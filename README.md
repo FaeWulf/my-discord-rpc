@@ -38,7 +38,7 @@ This is a small script I make with some feature for my discord profile, using no
 |largeImageText| Display text when holding on application icon|
 |buttons| Buttons in your rpc. Max: 2 |
 
-*assets: name is the name of asset, quote is the word when drag into it, leave it "" will disable it.
+*assets: name is the name of asset, quote is the word when drag into it, leave it "" will disable it.<br>
 *Note: If you use `UsingProgram`, make sure this script is not running in admin mode or sudo mode, or else it won't work. Because in my theory, script gets current focus program's name from the user account which is running this script, so if system running this script, boom nothing happens.
 
 #### Example config.js
