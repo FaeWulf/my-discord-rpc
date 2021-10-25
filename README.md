@@ -6,6 +6,7 @@ This is a small script I make with some feature for my discord profile, using no
 **[Requirements](#requirements)**<br>
 **[Installation](#installation)**<br>
 **[How to Config.json](#how-to-configjson)**<br>
+**[Screenshots](#screenshots)**<br>
 
 ## Features
 - Auto reconnect when exist discord and when discord is not opened yet
@@ -23,7 +24,7 @@ This is a small script I make with some feature for my discord profile, using no
 3. Run `npm i` inside the package directory
 4. Make sure to edit your config.json file
 5. Run `node index.js` to start the script
-6. (Extra) If you want to start it automatically on startup, use `node process manager` or use [`Task scheduler`](https://bfy.tw/RtOh) (Windows OS)
+6. (Extra) If you want to start it automatically on startup, use `node process manager` like `pm2` or `forever`, or you can use [`Task scheduler`](https://bfy.tw/RtOh) (Windows OS)
 
 ## How to Config.json?
 | Element | Usage |
@@ -83,6 +84,6 @@ This is a small script I make with some feature for my discord profile, using no
 	]
 }
 ```
-#### Result 
+# Screenshots 
 ![Breakdown](https://raw.githubusercontent.com/FaeWulf/my-discord-rpc/master/ss/result1.png)
 ![Breakdown](https://raw.githubusercontent.com/FaeWulf/my-discord-rpc/master/ss/result.gif)
