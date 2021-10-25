@@ -1,0 +1,18 @@
+{
+	"clientID" : "Your App ID here",
+	"exitOnDiscordClose": false,
+	"UsingProgram": true,
+	"assetsCycle" : true,
+	"stateCycle" : true,
+	
+	"assets": [
+
+	],
+	"state" : [
+		
+	],
+  	"largeImageText" : "",
+	"buttons": [
+		
+	]
+}

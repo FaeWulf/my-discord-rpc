@@ -78,7 +78,7 @@ jspm_packages/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+*.env
 
 # next.js build output
 .next
@@ -91,3 +91,6 @@ lerna-debug.log
 Thumbs.db
 
 temp.js
+daemon
+*.bat
+*.temp

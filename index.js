@@ -1,82 +1,85 @@
-const RPC = require('discord-rpc')
+const { Client } = require('discord-rpc')
 
 require('dotenv').config()
-const { windowManager } = require("node-window-manager");
+const active = require('active-windows')
+const config = require('./config.json')
 
-const config = {
-	clientId : "890059136694386738"
-}
-
-const client = new RPC.Client({transport: 'ipc'})
-
-const waifu = [
-	"Waifu #2: Ninim Raleigh",
-	"Waifu #1: Yue Aletia"
-]
-
-const imageWaifu = [
-	"ninim",
-	"yue"
-]
-
-const state = [
-	"| Absorbing Dark humour",
-	"| AduDarkwa",
-	" \"Only bigat\" ",
-	"Entering BigArc mode...",
-	"Sofa coding...",
-	"Entering Faewulf mode...",
-	"Watching iAtneh"
-]
-
-let chooseWaifu = true
+let client = new Client({transport: 'ipc'})
+let activityHandle
+let firstTime = true
+let currentAsset = 0
+let recent_state = config.state[rand(0, config.state.length - 1)]
 
 function rand(min, max) {
 	return Math.floor( (Math.random() * (max - min + 1)) + min )
 }
 
-client.on('ready', () => {
+
+
+function handleLogin() {
+
+	if(client) {
+		client.destroy()
+		client = new Client({transport: 'ipc'})
+	}
+
+	activityHandle = client.on('ready', () => {
 	
-	console.log('Authed for user', client.user.username);
+		console.log('Authed for user', client.user.username);
+		const time = new Date()
 
-	const time = new Date()
+		if(firstTime == true)
+		setInterval(() => {
+			const windowsGet = active.getActiveWindow()
+			const currentAppTitle = windowsGet.windowName?.split("-").pop()
 
-	setInterval( () => {
+			if(rand(0, 5) == 2 && config.stateCycle)
+				recent_state = config.state[rand(0, config.state.length - 1)]
 
-		const currentAppTitle = windowManager.getActiveWindow().getTitle().split("-").pop()
+			client.setActivity({
+				details : config.UsingProgram ? `🖥️ Using: ${currentAppTitle}` : undefined,
+    			startTimestamp : time,
+    			largeImageKey : config.assets[currentAsset == 0 ? config.assets.length - 1 : currentAsset - 1].name,
+    			largeImageText : config.largeImageText ? config.largeImageText : undefined,
+				smallImageText: config.assets[currentAsset].quote ? config.assets[currentAsset].quote : undefined,
+				smallImageKey:	config.assets[currentAsset].name,
+				state: recent_state,
+				buttons: config.buttons 
+			})
 
-		client.setActivity({
-
-			details : "[Using] " + currentAppTitle,
-    		startTimestamp : time,
-    		largeImageKey : "sofa",
-    		largeImageText : "Sofa Grand Master - Level 250",
-			smallImageText: waifu[ chooseWaifu ? 1 : 0 ],
-			smallImageKey:	imageWaifu[ chooseWaifu ? 1 : 0],
-			state:  state[rand(0, state.length - 1)],
-			buttons: [
-			{
-				label : 'Play with me?',
-				url : 'https://www.youtube.com/watch?v=o-YBDTqX_ZU'
-			},
-			{
-				label : 'Discord bot', 
-				url : 'https://discord.com/api/oauth2/authorize?client_id=874974280495026186&permissions=534760651328&redirect_uri=http%3A%2F%2Fbigat.duckdns.org%2Fapi%2Fcallback&scope=bot%20applications.commands'
+			if(config.assetsCycle) {
+				currentAsset++
+				if(currentAsset == config.assets.length)
+					currentAsset = 0
 			}
-		]
-		})
+		}, 5 * 1000 )
 
-		chooseWaifu = !chooseWaifu
+		firstTime = false
+	})
 
-	}, 5 * 1000 )
 
-});
+	setTimeout(() => {
+		client.login({clientId: config.clientID})
+			.then(() => {
+				client.on("disconnected", () => {
+					if(config.exitOnDiscordClose) {
+						console.log("Discord app closed. Exit process...")
+						process.exit(1)
+					}
+					else {
+						console.log("Discord app closed. Retry to connect when start discord again...")
+						handleLogin()
+					}
+				})
+			})
+	}, 5 * 1000)
+}
 
-const scopes = ['rpc', 'guilds'];
+handleLogin()
 
-client.login({ 
-	clientId: config.clientId, 
-	clientSecret: process.env.token, 
-	//redirectUri: 'https://localhost/lol',
-	//scopes: scopes
+process.on('unhandledRejection', err => {
+	if(err.message == "Could not connect") {
+		console.log("Could not connect to Discord, make sure you already open Discord. Retry...")
+		handleLogin()
+	}
 })

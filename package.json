@@ -9,8 +9,10 @@
   "author": "faewulf",
   "license": "ISC",
   "dependencies": {
+    "active-windows": "^0.1.14",
     "discord-rpc": "^4.0.1",
     "dotenv": "^10.0.0",
-    "node-window-manager": "^2.2.4"
+    "ffi-napi": "^4.0.3",
+    "ref-wchar-napi": "^1.0.3"
   }
 }
