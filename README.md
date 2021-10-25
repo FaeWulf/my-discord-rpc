@@ -1,4 +1,5 @@
 # Discord RPC
+![Breakdown](https://raw.githubusercontent.com/FaeWulf/my-discord-rpc/master/ss/result.gif)
 This is a small script I make with some feature for my discord profile, using nodejs.
 
 ## Table of contents
