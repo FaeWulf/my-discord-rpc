@@ -5,7 +5,7 @@ This is a small script I make with some feature for my discord profile, using no
 **[Feature](#features)**<br>
 **[Requirements](#requirements)**<br>
 **[Installation](#installation)**<br>
-**[How to Config.json](#how-to-configjson?)**<br>
+**[How to Config.json](#how-to-configjson)**<br>
 
 ## Features
 - Auto reconnect when exist discord and when discord is not opened yet
